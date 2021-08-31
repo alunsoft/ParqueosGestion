@@ -20,7 +20,8 @@ public class GestionParqueos {
                     subMenuConfiguraciones();
                     break;
                 case 2:
-                    System.out.println("la opcion de ingreso esta pendiente de completa");
+                    Utils.generarPdf();
+                    System.out.println("!!la opcion de ingreso esta pendiente de completa");
                     break;
                 case 3:
                     System.out.println("la opcion de egreso esta pendiente de completa");

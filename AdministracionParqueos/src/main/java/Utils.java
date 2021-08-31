@@ -1,3 +1,8 @@
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -122,5 +127,33 @@ public class Utils {
             }
         } while(fechaInvalida);
         return fecha;
+    }
+
+    public static void generarPdf() {
+        // Se crea el documento
+        Document documento = new Document();
+        try {
+            // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+            FileOutputStream ficheroPdf = new FileOutputStream("fichero.pdf");
+
+            // Se asocia el documento al OutputStream y se indica que el espaciado entre
+            // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+            PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(20);
+
+            // Se abre el documento.
+            documento.open();
+            documento.add(new Paragraph("Esto es el primer párrafo, normalito"));
+
+            documento.add(new Paragraph("Este es el segundo y tiene una fuente rara",
+                    FontFactory.getFont("arial",   // fuente
+                            22,                            // tamaño
+                            Font.ITALIC,                   // estilo
+                            BaseColor.CYAN)));             // color
+            documento.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 }
